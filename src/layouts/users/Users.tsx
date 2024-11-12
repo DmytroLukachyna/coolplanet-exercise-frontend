@@ -1,16 +1,24 @@
 "use client";
 
+import { useMachine } from "@xstate/react";
+import { useEffect } from "react";
 import { UsersLoading } from "@/components/UI/users/UsersLoading";
 import { UsersNotFound } from "@/components/UI/users/UsersNotFound";
 import { UsersTable } from "@/components/UI/users/UsersTable";
-import useUsers from "@/hooks/api/user/useUsers";
+import { fetchUsersMachine } from "@/machines/fetchUsersMachine";
 
 const Users = () => {
-  const { data: users, isLoading, isError } = useUsers();
+  const [current, send] = useMachine(fetchUsersMachine);
 
-  if (isLoading) return <UsersLoading />;
+  const { users } = current.context;
 
-  if (isError || !users?.length) return <UsersNotFound />;
+  useEffect(() => {
+    send({ type: "FETCH" });
+  }, [send]);
+
+  if (current.matches("idle") || current.matches("pending")) return <UsersLoading />;
+
+  if (current.matches("failed") || !users || !users.length) return <UsersNotFound />;
 
   return <UsersTable data={users} />;
 };

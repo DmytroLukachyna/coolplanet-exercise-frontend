@@ -1,17 +1,25 @@
 "use client";
 
+import { useMachine } from "@xstate/react";
+import { useEffect } from "react";
 import { UserCard } from "@/components/UI/user/UserCard";
 import { UserLoading } from "@/components/UI/user/UserLoading";
 import { UserNotFound } from "@/components/UI/user/UserNotFound";
-import useUserByID from "@/hooks/api/user/useUserByID";
 import { UserIdParam } from "@/types/api/user";
+import { fetchUserMachine } from "@/machines/fetchUserMachine";
 
 const User = ({ id }: UserIdParam) => {
-  const { data: user, isLoading, isError } = useUserByID({ id });
+  const [current, send] = useMachine(fetchUserMachine);
 
-  if (isLoading) return <UserLoading />;
+  const { user } = current.context;
 
-  if (isError || !user) return <UserNotFound id={id} />;
+  useEffect(() => {
+    send({ type: "FETCH", id });
+  }, [send, id]);
+
+  if (current.matches("idle") || current.matches("pending")) return <UserLoading />;
+
+  if (current.matches("failed") || !user) return <UserNotFound id={id} />;
 
   return <UserCard user={user} />;
 };
