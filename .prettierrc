@@ -1,0 +1,28 @@
+{
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-css-order"],
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "importOrder": [
+    "^axios",
+    "^@/api",
+    "react",
+    "classnames",
+    "^next",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components",
+    "^@/hooks",
+    "^@/types",
+    ".+(?<!(c|le|sc)ss)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "importOrderCaseInsensitive": true,
+  "endOfLine": "auto"
+}

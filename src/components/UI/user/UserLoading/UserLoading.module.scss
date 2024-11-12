@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  gap: 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 8px;
+}

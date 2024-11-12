@@ -1,0 +1,12 @@
+@use "./normalize.scss";
+
+:root {
+  --container-width: 1140px;
+  --container-padding: 12px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ecf7f9;
+}

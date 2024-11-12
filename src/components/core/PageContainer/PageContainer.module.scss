@@ -1,0 +1,52 @@
+.outer {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.15s ease;
+  background: var(--background-color) no-repeat 50% / cover;
+  width: 100%;
+  overflow: auto;
+  scrollbar-color: var(--text-color) rgba(0, 0, 0, 0);
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  padding: {
+    right: var(--container-padding);
+    left: var(--container-padding);
+  }
+  &::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: var(--text-color);
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    padding: 2px 0;
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.inner {
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: var(--container-width);
+  height: 100%;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

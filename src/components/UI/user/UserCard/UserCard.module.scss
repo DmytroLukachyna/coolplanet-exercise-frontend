@@ -1,0 +1,68 @@
+.title {
+  display: flex;
+  gap: 8px;
+}
+
+.avatar {
+  border: 1px solid #8c1af6;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  .link {
+    transition:
+      color 0.25s ease,
+      text-decoration-color 0.25s ease;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 12px;
+}
+
+.listItem {
+  letter-spacing: 0.00938em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .email {
+    .link {
+      &:active,
+      &:hover,
+      &:focus,
+      &:visited {
+        outline: 0;
+        text-decoration-color: inherit;
+      }
+    }
+  }
+}
